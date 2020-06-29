@@ -1,6 +1,9 @@
 language: c
 dist: xenial
 sudo: required
+arch:
+  - amd64
+  - arm64
 branches:
   only:
   - master
@@ -24,10 +27,6 @@ env:
   - TRAVIS_PYTHON_VERSION=3.6 TESTS_EXCLUDE_RE='^test_[^a-p].*\.py'
   - TRAVIS_PYTHON_VERSION=3.7 TESTS_EXCLUDE_RE='^test_[^a-p].*\.py'
 notifications:
-  email:
-    recipients:
-      - stan-buildbot@googlegroups.com
-    on_success: change
-    on_failure: always
+  email: false
 install: source continuous_integration/install.sh
 script: bash continuous_integration/test_script.sh --exclude="$TESTS_EXCLUDE_RE"
